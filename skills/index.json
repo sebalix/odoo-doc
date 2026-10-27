@@ -1,0 +1,19 @@
+{
+  "skills": [
+    {
+      "name": "odoo-review",
+      "version": "1",
+      "files": ["SKILL.md"]
+    },
+    {
+      "name": "odoo-audit",
+      "version": "1",
+      "files": ["SKILL.md", "references/report-template.md"]
+    },
+    {
+      "name": "odoo-migrate",
+      "version": "1",
+      "files": ["SKILL.md"]
+    }
+  ]
+}
