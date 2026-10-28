@@ -67,3 +67,17 @@ list of ids. Nothing hits the database until the query is needed.
   writes tables the ORM may have modified in-flight.
 - Use `with self.env.cr.savepoint():` for error-tolerant partial work
   inside a larger transaction.
+
+## Extension hooks and overrides
+
+- A custom hook (a method defined as an extension point for other
+  modules) documents its contract and its default behavior in its
+  docstring.
+- Overriding a hook requires calling `super()` — an extension point
+  must stay chainable.
+- Exception: never rewrite the body of an override that predates the
+  current change just to add `super()` — leave it and mark it
+  `# Full override (no super())`.
+- Overrides do not repeat the docstring of the overridden method: the
+  base owns the documentation. Put override-specific, non-obvious
+  behavior in comments.

@@ -31,3 +31,17 @@ description: Review Odoo module code, diffs, or pull requests for correctness, s
 - Views: inheritance via xpath, unique view ids, `groups` set where required.
 - User-facing strings translatable.
 - New behavior covered by tests.
+- Layering: resources placed with the model they are bound to (mail
+  template on `stock.picking` → stock module); no mention of
+  non-dependency modules in code; hook docstrings document the contract
+  and default, never the overriding module.
+- Hook overrides call `super()`, or are pre-existing bodies marked
+  `# Full override (no super())`; overrides do not repeat the base
+  docstring.
+- Comments: judge only the ones the change newly adds — comments moved
+  with the code stay as they are; useless = restates adjacent code,
+  method names, or the docstring.
+- Diffs that move records between modules: XML ids re-attributed from
+  the receiving module before its data load; migration folder version
+  strictly above any version already released (see odoo-knowledge
+  `migrations/common-patterns.md`).

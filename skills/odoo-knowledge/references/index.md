@@ -11,10 +11,11 @@ outlines and are pending content.
 | File | Read when... | Status |
 | ---- | ------------ | ------ |
 | `module-structure.md` | Creating a module, reviewing layout/manifest/dependencies | done |
-| `orm.md` | ORM: environment, sudo, transactions (house rules only) | done |
+| `orm.md` | ORM: environment, sudo, transactions, extension hooks and overrides (house rules only) | done |
 | `security.md` | Sweep rules: sudo, public methods, related fields, raw SQL, domain injection, secrets | done |
 | `data.md` | Data files: noupdate records, hooks, per-company records (house rules only) | done |
 | `testing.md` | Writing or reviewing tests (organization and content; running them is project-level) | done |
+| `comments.md` | Writing or reviewing comments and docstrings (usefulness only) | done |
 
 ## Version knowledge
 

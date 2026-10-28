@@ -17,8 +17,11 @@ Odoo practice: check existing modules when unsure.
 - `forcecreate` (defaults to `true` in noupdate mode) recreates a record
   the user deleted; set `forcecreate="false"` to respect deletions — rare,
   only for records users may legitimately remove.
-- Never rename the xml_id of a noupdate record: existing installs keep the
-  old external id and gain a duplicate on update.
+- Never rename the xml_id of a noupdate record in the data file alone:
+  existing installs keep the old external id and gain a duplicate on
+  update. Moving a noupdate record to another module is the exception —
+  it requires re-attribution from the receiving module, before its data
+  files load; see `migrations/common-patterns.md`.
 
 ## Init hooks and migration scripts
 

@@ -92,6 +92,20 @@ my_module/
   (e.g. `sale` + `mrp` + `stock` + `hr`...). Features have to be split in
   different modules, with loose coupling (through hooks for instance) making
   them working together.
+- Layer custom modules like the standard ones: one feature module per
+  area (`custom_sale`, `custom_stock`, `custom_mrp`, ...), one glue
+  module per pair of areas (`custom_sale_stock`). A module extending
+  `mrp` may depend on the custom stock module — standard `mrp` already
+  depends on `stock`.
+- A resource belongs to the module of the model it is bound to, not to
+  the flow that triggers it: a mail template on `stock.picking` lives in
+  the stock module, a template on `project.project` in the project
+  module.
+- Code never mentions a sibling module it does not depend on — not even
+  in comments and docstrings. A hook docstring states the contract and
+  the default behavior, and says it can be overridden; it never names
+  the overriding module. Cross-references belong in manifest
+  descriptions and migration scripts, where they are functional.
 - Put security groups in a base module (e.g. `custom_base`) as empty, allowing
   their usage in several submodules.
   Submodules will depend on the base module to complete the groups and set
