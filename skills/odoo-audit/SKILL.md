@@ -5,8 +5,12 @@ description: Perform a systematic audit of an Odoo project or module set — arc
 
 ## Workflow
 
-1. **Inventory**: list the modules (manifests), their dependencies, the
-   target Odoo version(s), and the overall project layout. Record what is
+1. **Inventory**: ask the user for an existing module list (CSV or any
+   tabular export) with availability and LOC stats if they have one, then
+   complete it following `references/module-inventory.md` (origin and
+   upstream detection, LOC counting, availability resolution, migration
+   effort). Produce `module-inventory.csv`, formatted like
+   `references/inventory-template.csv`. Record what is
    custom vs. OCA/standard.
 2. Load the `odoo-knowledge` skill — its routing table maps each area below
    to its reference file.
@@ -26,8 +30,18 @@ description: Perform a systematic audit of an Odoo project or module set — arc
 
 4. **Upgrade readiness**: assess against the odoo-knowledge version
    reference for the next Odoo version, and its common migration patterns.
-5. **Report**: produce the final report following
-   `references/report-template.md`.
+5. **Report**: produce the markdown audit report following
+   `references/report-template.md` and deliver it together with
+   `module-inventory.csv` (see Deliverables).
+
+## Deliverables
+
+- `module-inventory.csv` — one row per module, sorted by origin then
+  upstream, with LOC stats, availability and migration effort. Flat CSV,
+  imports directly into Google Sheets; built at step 1.
+- The audit report — markdown following `references/report-template.md`,
+  imports into Google Docs; summarizes the inventory instead of
+  duplicating it.
 
 ## Coverage rules
 

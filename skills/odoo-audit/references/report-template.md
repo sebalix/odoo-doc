@@ -8,12 +8,28 @@
 - Odoo version(s):
 - Audit date:
 - Overall assessment: <!-- one paragraph: health, main risks, top priorities -->
-- Headline numbers: X blockers, Y should-fix, Z nits.
+- Headline numbers: X blockers, Y should-fix, Z nits; N modules
+  (M custom), E person-days estimated to migrate to the latest stable.
 
 ## 2. Scope & inventory
 
 - Modules audited (custom vs. OCA/standard):
 - Out of scope:
+- Detailed inventory: `module-inventory.csv` — one row per module
+  (origin, upstream, LOC, availability, migration effort).
+
+### Inventory summary
+
+<!-- One row per origin, totals from module-inventory.csv. -->
+
+| Origin | Modules | Python LOC | Total LOC | Est. migration days |
+|--------|---------|-----------|-----------|---------------------|
+| odoo-core | | | | |
+| odoo-enterprise | | | | |
+| oca | | | | |
+| third-party | | | | |
+| custom | | | | |
+| **Total** | | | | |
 
 ## 3. Findings summary
 
@@ -39,7 +55,8 @@
 
 - Target version assessed:
 - Version deltas affecting this codebase:
-- Estimated migration effort per module (S/M/L) and rationale:
+- Estimated migration effort: per-module days in `module-inventory.csv`;
+  summarize the main cost drivers (modules, deltas) and the total here.
 
 ## 6. Prioritized action plan
 
