@@ -1,6 +1,28 @@
 {
   "skills": [
     {
+      "name": "odoo-knowledge",
+      "version": "1",
+      "files": [
+        "SKILL.md",
+        "references/index.md",
+        "references/data.md",
+        "references/module-structure.md",
+        "references/orm.md",
+        "references/security.md",
+        "references/testing.md",
+        "references/migrations/common-patterns.md",
+        "references/versions/13.0.md",
+        "references/versions/14.0.md",
+        "references/versions/15.0.md",
+        "references/versions/16.0.md",
+        "references/versions/17.0.md",
+        "references/versions/18.0.md",
+        "references/versions/19.0.md",
+        "references/versions/20.0.md"
+      ]
+    },
+    {
       "name": "odoo-review",
       "version": "1",
       "files": ["SKILL.md"]

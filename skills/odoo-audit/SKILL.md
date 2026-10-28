@@ -8,25 +8,25 @@ description: Perform a systematic audit of an Odoo project or module set — arc
 1. **Inventory**: list the modules (manifests), their dependencies, the
    target Odoo version(s), and the overall project layout. Record what is
    custom vs. OCA/standard.
-2. **Per-area assessment**: for each area below, read the matching knowledge
-   base file *before* assessing, then sweep the codebase for the patterns
-   the file flags and judge every hit against its rules — a hit is not a
-   finding by itself; the rules say what makes it one. The assessment of
-   an area is complete when every pattern has been swept and every hit
-   judged. Record findings with severity (blocker / should-fix / nit)
-   and `file:line` evidence:
+2. Load the `odoo-knowledge` skill — its routing table maps each area below
+   to its reference file.
+3. **Per-area assessment**: for each area below, read the matching
+   odoo-knowledge reference *before* assessing, then sweep the codebase for
+   the patterns the file flags and judge every hit against its rules — a hit
+   is not a finding by itself; the rules say what makes it one. The
+   assessment of an area is complete when every pattern has been swept and
+   every hit judged. Record findings with severity (blocker / should-fix /
+   nit) and `file:line` evidence:
 
-   | Area | Knowledge base file |
-   | ---- | ------------------- |
-   | Module structure & dependencies | `../../docs/module-structure.md` |
-   | Models & ORM | `../../docs/orm.md` |
-   | Security | `../../docs/security.md` |
-   | Data files | `../../docs/data.md` |
-   | Tests | `../../docs/testing.md` |
+   - Module structure & dependencies
+   - Models & ORM
+   - Security
+   - Data files
+   - Tests
 
-3. **Upgrade readiness**: assess against `../../docs/versions/<target>.md`
-   for the next Odoo version, and `../../docs/migrations/common-patterns.md`.
-4. **Report**: produce the final report following
+4. **Upgrade readiness**: assess against the odoo-knowledge version
+   reference for the next Odoo version, and its common migration patterns.
+5. **Report**: produce the final report following
    `references/report-template.md`.
 
 ## Coverage rules
