@@ -30,6 +30,24 @@ constraints) follows standard Odoo practice: check modern core modules and
   the equivalent `['|', ('company_id', '=', False), ('company_id', '=',
   company_id)]`.
 
+## Query object
+
+Since 17.0, `_search()` returns a lazy `Query` object (defined in
+`odoo/tools/query.py`, moved to `odoo/orm/query.py` in 20.0) instead of a
+list of ids. Nothing hits the database until the query is needed.
+
+- Get one: `query = self._search(domain)` (access-checked), or
+  `records._as_query()` to build one from an existing recordset.
+- Inject it in a domain instead of fetching ids in Python:
+  `[('id', 'in', query)]` — the ORM generates a SQL sub-select (and injects
+  the memoized ids when already known).
+- Turn it back into a recordset with `self._fetch_query(query, field_names)`
+  (fields prefetched; this is what `search_fetch` uses internally).
+- Tweak before execution: `query.limit`, `query.offset`,
+  `query.order = ...`; check cheaply with `query.is_empty()`.
+- In `_search` overrides, modify and return the `Query` — do not force it
+  into a list of ids and search again.
+
 ## sudo
 
 - `sudo()` only where privileged access is genuinely required, and as
