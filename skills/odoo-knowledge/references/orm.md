@@ -1,9 +1,9 @@
 # ORM
 
-House rules for environment, sudo, and transaction handling. Everything
-else about the ORM (decorators, computed fields, `Command`, constraints)
-follows standard Odoo practice: check modern core modules and `versions/`
-when unsure.
+House rules for environment, sudo, domains, `Command`, and transaction
+handling. Everything else about the ORM (decorators, computed fields,
+constraints) follows standard Odoo practice: check modern core modules and
+`versions/` when unsure.
 
 ## Environment
 
@@ -12,6 +12,23 @@ when unsure.
   `self._context`) are removed — see `versions/`.
 - Never mutate a context or environment in place: build a new one with
   `with_context()` / `with_user()` / `sudo()` and use that recordset.
+
+## Command
+
+- Write relational fields with the `Command` named constants
+  (`from odoo import Command`, available since 15.0):
+  `Command.set`, `Command.clear`, `Command.link`, `Command.unlink`,
+  `Command.create` — never raw `(6, 0, [...])` tuples in new or
+  migrated code.
+
+## Domains
+
+- When a domain filters a relation by company and shared (company-less)
+  records are valid, keep them reachable with the compact form
+  `[('company_id', 'in', [company_id, False])]`. Do not drop the `False`
+  (shared records disappear from the selection), and do not spell out
+  the equivalent `['|', ('company_id', '=', False), ('company_id', '=',
+  company_id)]`.
 
 ## sudo
 

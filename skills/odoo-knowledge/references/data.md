@@ -28,4 +28,30 @@ Odoo practice: check existing modules when unsure.
 - `pre_init_hook` (before loading): conditionally skip heavy data or
   verify prerequisites.
 - `migrations/{module_version}/{pre,post}-migrate.py`: used when the module
-  is already installed in a database to migrate existing data.
+  is already installed in a database to migrate existing data. Scripts run
+  for each version step between the installed version and the target.
+- Selection rule: hooks and migration scripts are mutually exclusive per
+  database. `{pre,post}_init_hook` run only when the module is *installed*
+  (absent from the database); migration scripts run only when it is
+  *updated* (already installed, version bumped).
+- Unknown installation status (e.g. an OCA module release must apply the
+  same setup to fresh installs and existing databases): implement the
+  setup once in a shared function, called from both the hook and the
+  migration script on the same side of the data load
+  (`{pre,post}_init_hook` with its `{pre,post}-migrate.py` counterpart).
+  The hook functions live in a `hooks.py` at module root, imported from
+  `__init__.py` (manifest hook names resolve as module attributes); keep
+  the shared code in `models/` only when the business code also uses it
+  — not only the migration. Make the function idempotent — guard on
+  existing records/parameters so databases in any state converge to the
+  same result.
+- Reusing hook code from a migration script: scripts always receive
+  `(cr, version)` while hooks receive `env` (since 17.0 — `(cr, ...)`
+  before, see `versions/17.0.md`) — build an env with
+  `api.Environment(cr, SUPERUSER_ID, {})` to call the same shared
+  function.
+- Use `openupgradelib` (`pip install openupgradelib`, then
+  `from openupgradelib import openupgrade`) for data work in hooks and
+  migration scripts — renames, value mapping, safe deletions. It is a
+  pip-level tool, never a manifest dependency, and does not belong in
+  business code. Patterns: see `migrations/common-patterns.md`.

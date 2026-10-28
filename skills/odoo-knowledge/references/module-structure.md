@@ -11,6 +11,7 @@ Canonical layout:
 my_module/
 ├── __init__.py              ← imports models/, controllers/, wizards/, report/
 ├── __manifest__.py
+├── hooks.py                 ← {pre,post}_init_hook / uninstall_hook entry points
 ├── models/                  ← one file per model, named after the model
 │   └── res_partner.py
 ├── views/
@@ -33,7 +34,9 @@ my_module/
 
 - One model per file in `models/`, file named after the model
   (`models/account_move.py` for `account.move`).
-- No loose `.py` or `.xml` files at module root; everything below the root is
+- No loose `.py` or `.xml` files at module root — the sole exception is
+  `hooks.py` (init/uninstall hook entry points, imported from
+  `__init__.py`; see `data.md`); everything below the root is
   imported through `__init__.py` or declared in the manifest.
 - `security/ir.model.access.csv` contains ACLs only; record rules live in a
   sibling XML file.

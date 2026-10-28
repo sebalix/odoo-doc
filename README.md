@@ -1,4 +1,4 @@
-# odoo-doc
+# odoo-skills
 
 Consolidated best practices for Odoo development, structured for consumption by
 AI coding agents (OpenCode skills, agent context, reviews, audits).

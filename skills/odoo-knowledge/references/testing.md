@@ -8,13 +8,21 @@ How Odoo tests should be organized and written.
   behavior under test (`test_res_partner.py`).
 - One class per feature under test; one test method per behavior, named
   `test_<action>__<expected_outcome>`.
-- Use `TransactionCase` for standard isolation; only reach for other
-  base classes when the test genuinely needs it.
+- Inherit `BaseCommon` (`from odoo.addons.base.tests.common import
+  BaseCommon`) as the default test base — core-provided since 16.0. It
+  disables mail/tracking noise by default (`tracking_disable`,
+  `mail_create_nolog`, ...) and provides fixtures (`cls.company`,
+  `cls.partner`, group refs) and helpers (`_create_company`,
+  `_create_new_internal_user`, `quick_ref`, ...). Override
+  `default_env_context()` when tracking/mail is the behavior under test;
+  use plain `TransactionCase` only when the mail-disabled context or the
+  fixtures do not fit.
 - `@tagged('at_install')` is the default; use `@tagged('post_install')`
   only when the behavior needs the module's *installed* state (data across
   modules, mail templates, ...).
 - Tests must not depend on each other's data or on execution order;
-  share fixtures and helpers in `tests/common.py`.
+  share module-specific fixtures and helpers in `tests/common.py`, as
+  mixin classes combined with the core base class.
 
 ## Test data
 
