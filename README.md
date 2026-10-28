@@ -23,6 +23,7 @@ skills/
 ├── odoo-knowledge/         Shared knowledge base — router + references
 │   └── references/         Topic files, migrations/, versions/
 ├── odoo-review/            Everyday code/PR review workflow
+├── odoo-review-oca-migration/  OCA migration/port PR review workflow
 ├── odoo-audit/             Project audit workflow + report templates
 └── odoo-migrate/           Migration knowledge companion
 ```

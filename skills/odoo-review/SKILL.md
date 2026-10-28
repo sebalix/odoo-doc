@@ -1,6 +1,6 @@
 ---
 name: odoo-review
-description: Review Odoo module code, diffs, or pull requests for correctness, security, performance, and conventions. Use when asked to review Odoo code, or when a change touches Odoo models, views, security files, or manifests. For OCA migration/port PRs, prefer the review-oca-migration-pr skill instead.
+description: Review Odoo module code, diffs, or pull requests for correctness, security, performance, and conventions. Use when asked to review Odoo code, or when a change touches Odoo models, views, security files, or manifests. For OCA migration/port PRs, prefer the odoo-review-oca-migration skill instead.
 ---
 
 ## Workflow
