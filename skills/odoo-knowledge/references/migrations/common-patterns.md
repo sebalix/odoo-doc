@@ -68,11 +68,10 @@ and creating duplicates.
   provenance.
 - Data records (views, access rights, mail templates...) are re-created
   by the data files: only a receiver-side rename avoids duplicates.
-- `rename_xmlids` has no collision guard: renaming a stale xmlid whose
-  target twin exists violates the `ir_model_data` unique constraint.
-  Drop the stale twins first (scoped to the moved names), avoid
-  `allow_merge` (the SQL merge is incomplete, by OCA's own admission)
-  and `update_module_moved_fields` (the reflection covers it natively).
+- Write the scripts for the production database state only: a
+  development database's state cannot be guaranteed — recreate it from
+  the production dump instead of coding for its intermediate states.
+  `rename_xmlids` skips missing sources, so re-runs are safe.
 - The migration folder runs only when
   `installed_version < folder_version <= manifest_version`: place it at
   the target version only when that version is unreleased; when it

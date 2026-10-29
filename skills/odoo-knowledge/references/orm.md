@@ -68,16 +68,12 @@ list of ids. Nothing hits the database until the query is needed.
 - Use `with self.env.cr.savepoint():` for error-tolerant partial work
   inside a larger transaction.
 
-## Extension hooks and overrides
+## Overrides
 
-- A custom hook (a method defined as an extension point for other
-  modules) documents its contract and its default behavior in its
-  docstring.
-- Overriding a hook requires calling `super()` — an extension point
-  must stay chainable.
+- Every override calls `super()` and returns its result.
 - Exception: never rewrite the body of an override that predates the
-  current change just to add `super()` — leave it and mark it
+  current change just to add `super()`; leave it and mark it
   `# Full override (no super())`.
 - Overrides do not repeat the docstring of the overridden method: the
-  base owns the documentation. Put override-specific, non-obvious
-  behavior in comments.
+  base owns the documentation — override-specific, non-obvious notes
+  go in comments.

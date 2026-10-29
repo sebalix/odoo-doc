@@ -35,9 +35,9 @@ description: Review Odoo module code, diffs, or pull requests for correctness, s
   template on `stock.picking` → stock module); no mention of
   non-dependency modules in code; hook docstrings document the contract
   and default, never the overriding module.
-- Hook overrides call `super()`, or are pre-existing bodies marked
-  `# Full override (no super())`; overrides do not repeat the base
-  docstring.
+- Overrides call `super()` and return its result, or are pre-existing
+  bodies marked `# Full override (no super())`; overrides do not
+  repeat the base docstring.
 - Comments: judge only the ones the change newly adds — comments moved
   with the code stay as they are; useless = restates adjacent code,
   method names, or the docstring.

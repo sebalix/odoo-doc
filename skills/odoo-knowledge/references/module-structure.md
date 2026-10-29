@@ -38,6 +38,7 @@ my_module/
   `hooks.py` (init/uninstall hook entry points, imported from
   `__init__.py`; see `data.md`); everything below the root is
   imported through `__init__.py` or declared in the manifest.
+- New Python files carry the project copyright header (author, license).
 - `security/ir.model.access.csv` contains ACLs only; record rules live in a
   sibling XML file.
 - `data/` vs `demo/`: the module must work fully with `demo/` absent;
@@ -68,7 +69,8 @@ my_module/
   `custom_sale`, `custom_stock`, `custom_sale_stock`, ...
 - View xml_ids: `<model>_view_<type>` (`res_partner_view_form`); actions and
   menus follow the same pattern (`res_partner_action`, `res_partner_menu`).
-- When extending another module's view, keep the original id.
+- When extending another module's view, keep the original id; the view
+  *name* may carry the "inherit" term.
 
 ## Dependency discipline
 
