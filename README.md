@@ -59,6 +59,39 @@ files, data files, tests, migrations) must start by loading the `odoo-knowledge`
 skill and reading the reference file for each area involved.
 ```
 
+### Local Odoo sources (optional)
+
+It is recommended to have the Odoo versions you work with cloned somewhere on
+your workstation, one branch per directory, e.g.:
+
+```text
+~/dev/odoo/
+├── odoo-17/
+├── odoo-18/
+├── odoo-19/
+└── odoo-20/
+```
+
+This lets the agent browse the actual Odoo source code (ORM internals, field
+semantics, addons code) directly instead of fetching it from the web, and
+compare the same file between versions. This is especially valuable for
+migration tasks, where having both the source and target versions locally
+allows direct comparison of the code.
+
+Declare the clones in your global agent configuration (e.g. in
+`~/.config/opencode/AGENTS.md` for OpenCode) so that every session knows
+they exist, adjusting the path to wherever you cloned them:
+
+```md
+## Odoo sources
+
+Read-only clones of Odoo (odoo/odoo) are available under `~/dev/odoo/`, one
+directory per version (e.g. `odoo-17` = branch 17.0). When a task requires
+reading Odoo core source, read it from the clone of the relevant version
+instead of fetching from the web. These clones are read-only: never modify
+or commit in them.
+```
+
 ## Maintenance rules
 
 1. Every rule is written once, in `skills/odoo-knowledge/references/`. If a
